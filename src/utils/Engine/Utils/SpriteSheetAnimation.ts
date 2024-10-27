@@ -1,3 +1,4 @@
+import type { BasicCallback } from '../../../types/helpers';
 import Point from "./Point";
 import SpriteSelector from "./SpriteSelector";
 
@@ -16,11 +17,21 @@ export default class SpriteSheetAnimation<SK extends string> {
   private animationSequences: AnimationSequences<SK>;
   private element: HTMLElement;
 
-  private mirror = false;
+  private _mirror = false;
   private currentFrame = 0;
   public currentInterval: number;
-  private currentSequence: SK;
+  private _currentSequence: SK;
   private intervalID: number = 0;
+
+  public onAnimationEnd: BasicCallback | null = null;
+
+  get currentSequence() {
+    return this._currentSequence;
+  }
+
+  get mirror() {
+    return this._mirror;
+  }
 
   constructor(parameters: SpriteSheetAnimationParameters<SK>) {
     this.spriteSelector = parameters.spriteSelector;
@@ -36,15 +47,15 @@ export default class SpriteSheetAnimation<SK extends string> {
 
     // siempre se ejecuta primero setAnimation
     this.setAnimation(parameters.defaultSequence);
-    this.currentSequence = parameters.defaultSequence;
+    this._currentSequence = parameters.defaultSequence;
   }
 
   setAnimation(sequence: SK, mirror: boolean = false) {
-    if (this.currentSequence == sequence && mirror == this.mirror) return;
+    if (this._currentSequence == sequence && mirror == this._mirror) return;
     clearInterval(this.intervalID);
 
-    this.mirror = mirror;
-    this.currentSequence = sequence;
+    this._mirror = mirror;
+    this._currentSequence = sequence;
     this.currentFrame = 0;
 
     this.element.style.scale = mirror ? '-1 1' : '1 1'
@@ -54,15 +65,11 @@ export default class SpriteSheetAnimation<SK extends string> {
 
   private loop() {
     this.intervalID = setTimeout(() => {
-      const sequence = this.animationSequences[this.currentSequence];
+      const sequence = this.animationSequences[this._currentSequence];
 
       const spriteCoordinates = sequence[this.currentFrame];
 
       const style = this.element.style;
-
-      /* if (this.mirror) {
-        spriteCoordinates.x = sequence.length - spriteCoordinates.x;
-      } */
 
       const spritePixelCoordinates = this.spriteSelector.getSprite(
         spriteCoordinates.y,
@@ -75,6 +82,8 @@ export default class SpriteSheetAnimation<SK extends string> {
       this.currentFrame++;
       if (this.currentFrame >= sequence.length) {
         this.currentFrame = 0;
+        this.onAnimationEnd?.()
+        this.onAnimationEnd = null;
       }
 
       this.loop();

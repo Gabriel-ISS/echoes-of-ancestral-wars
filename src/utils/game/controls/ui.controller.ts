@@ -40,6 +40,8 @@ export async function setUIControls(
 
     $startStopGameBtn.removeEventListener("click", startGame);
     $startStopGameBtn.addEventListener("click", stopGame);
+
+    Controller.locked = false;
   };
 
   const stopGame = () => {

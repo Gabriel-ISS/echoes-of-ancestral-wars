@@ -1,23 +1,25 @@
 import type PlayableCharacter from "../../Engine/Character/PlayableCharacter";
-import Controller from "../../Engine/Controller";
+import Controller, { MouseButton } from "../../Engine/Controller";
 
 export default function setCharacterControls(character: PlayableCharacter) {
   const animationIntervals = {
     idle: 200,
     walk: 100,
     run: 50,
+    attack: 70,
   };
 
-  enum KEYS {
-    RIGHT = "d",
-    LEFT = "a",
-    UP = "w",
-    DOWN = "s",
-    RUN = "shift",
+  const keys = {
+    RIGHT: "d",
+    LEFT: "a",
+    UP: "w",
+    DOWN: "s",
+    RUN: "shift",
+    ATTACK: MouseButton.LEFT,
   }
 
   const setWalkOrRunInterval = () => {
-    if (Controller.activeKeys.has(KEYS.RUN)) {
+    if (Controller.activeKeys.has(keys.RUN)) {
       character.animation.currentInterval = animationIntervals.run;
     } else {
       character.animation.currentInterval = animationIntervals.walk;
@@ -32,66 +34,87 @@ export default function setCharacterControls(character: PlayableCharacter) {
   };
 
   // derecha
-  Controller.setKeyDownEventListener(KEYS.RIGHT, () => {
+  Controller.setKeyDownEventListener(keys.RIGHT, () => {
     setWalkOrRunInterval();
     character.move.right();
     character.animation.setAnimation("move_side");
   });
-  Controller.setKeyUpEventListener(KEYS.RIGHT, () => {
+  Controller.setKeyUpEventListener(keys.RIGHT, () => {
     setIdleAnimation("idle_side");
   });
 
   // izquierda
-  Controller.setKeyDownEventListener(KEYS.LEFT, () => {
+  Controller.setKeyDownEventListener(keys.LEFT, () => {
     setWalkOrRunInterval();
     character.move.left();
     character.animation.setAnimation("move_side", true);
   });
-  Controller.setKeyUpEventListener(KEYS.LEFT, () => {
+  Controller.setKeyUpEventListener(keys.LEFT, () => {
     setIdleAnimation("idle_side", true);
   });
 
   // arriba
-  Controller.setKeyDownEventListener(KEYS.UP, () => {
+  Controller.setKeyDownEventListener(keys.UP, () => {
     setWalkOrRunInterval();
     character.move.top();
-    if (Controller.activeKeys.has("d")) {
+    if (Controller.activeKeys.has(keys.RIGHT)) {
       character.animation.setAnimation("move_side");
-    } else if (Controller.activeKeys.has("a")) {
+    } else if (Controller.activeKeys.has(keys.LEFT)) {
       character.animation.setAnimation("move_side", true);
     } else {
       character.animation.setAnimation("move_top");
     }
   });
-  Controller.setKeyUpEventListener(KEYS.UP, () => {
+  Controller.setKeyUpEventListener(keys.UP, () => {
     setIdleAnimation("idle_top");
   });
 
   // abajo
-  Controller.setKeyDownEventListener(KEYS.DOWN, () => {
+  Controller.setKeyDownEventListener(keys.DOWN, () => {
     setWalkOrRunInterval();
     character.move.bottom();
-    if (Controller.activeKeys.has("d")) {
+    if (Controller.activeKeys.has(keys.RIGHT)) {
       character.animation.setAnimation("move_side");
-    } else if (Controller.activeKeys.has("a")) {
+    } else if (Controller.activeKeys.has(keys.LEFT)) {
       character.animation.setAnimation("move_side", true);
     } else {
       character.animation.setAnimation("move_bottom");
     }
   });
-  Controller.setKeyUpEventListener(KEYS.DOWN, () => {
+  Controller.setKeyUpEventListener(keys.DOWN, () => {
     setIdleAnimation("idle_bottom");
   });
 
   // correr
-  Controller.setKeyDownEventListener(KEYS.RUN, () => {
+  Controller.setKeyDownEventListener(keys.RUN, () => {
     character.startRunning();
     character.animation.currentInterval = animationIntervals.run;
   });
 
   // dejar de correr
-  Controller.setKeyUpEventListener(KEYS.RUN, () => {
+  Controller.setKeyUpEventListener(keys.RUN, () => {
     character.stopRunning();
     character.animation.currentInterval = animationIntervals.walk;
+  });
+
+  Controller.setMouseUpEventListener(keys.ATTACK, () => {
+    character.animation.currentInterval = animationIntervals.attack;
+
+    if (character.animation.currentSequence.includes("side")) {
+      character.animation.setAnimation(
+        "attack_side",
+        character.animation.mirror
+      );
+      character.animation.onAnimationEnd = () => {
+        setIdleAnimation("idle_side", character.animation.mirror);
+      };
+    } else if (character.animation.currentSequence.includes("top")) {
+      character.animation.setAnimation("attack_top");
+      character.animation.onAnimationEnd = () => setIdleAnimation("idle_top");
+    } else if (character.animation.currentSequence.includes("bottom")) {
+      character.animation.setAnimation("attack_bottom");
+      character.animation.onAnimationEnd = () =>
+        setIdleAnimation("idle_bottom");
+    }
   });
 }
