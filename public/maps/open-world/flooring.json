@@ -1,0 +1,14 @@
+{ "columns":5,
+ "image":"..\/..\/assets\/mystic_woods_2.2\/sprites\/tilesets\/floors\/flooring.png",
+ "imageheight":48,
+ "imagewidth":80,
+ "margin":0,
+ "name":"flooring",
+ "spacing":0,
+ "tilecount":15,
+ "tiledversion":"1.11.0",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

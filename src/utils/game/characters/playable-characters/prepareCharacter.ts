@@ -9,7 +9,7 @@ import setCharacterControls from "../../controls/character.controller";
 
 export default async function prepareCharacter(mapManager: MapManager) {
   const characterSpriteSelector = new SpriteSelector(
-    "/assets/sprites/characters/player.png",
+    "/assets/mystic_woods_2.2/sprites/characters/player.png",
     10,
     6,
     48,

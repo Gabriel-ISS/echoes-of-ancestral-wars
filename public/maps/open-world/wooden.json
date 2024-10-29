@@ -1,0 +1,14 @@
+{ "columns":1,
+ "image":"..\/..\/assets\/mystic_woods_2.2\/sprites\/tilesets\/floors\/wooden.png",
+ "imageheight":16,
+ "imagewidth":16,
+ "margin":0,
+ "name":"wooden",
+ "spacing":0,
+ "tilecount":1,
+ "tiledversion":"1.11.0",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}

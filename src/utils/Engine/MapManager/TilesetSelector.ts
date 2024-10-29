@@ -31,8 +31,12 @@ export default class TilesetSelector {
   getTileCoordinates(globalID: number): Point {
     if (this.tileset.tilecount == 1) return new Point([0, 0]);
     const localID = this.getLocalID(globalID);
-
-    return this.getTileCoordinatesFromLocalID(localID);
+    const coordinates = this.getTileCoordinatesFromLocalID(localID);
+    if (this.tileset.tilecount == 6) {
+      console.log(this.tilesetGlobalID)
+      console.log(globalID, localID, coordinates)
+    }
+    return coordinates
   }
 
   /**@returns las colisiones en crudo */
@@ -44,6 +48,6 @@ export default class TilesetSelector {
     const tile = tiles.find((tile) => tile.id == localID);
     if (!tile) return []
 
-    return tile.objectgroup.objects;
+    return tile.objectgroup?.objects ?? [];
   }
 }

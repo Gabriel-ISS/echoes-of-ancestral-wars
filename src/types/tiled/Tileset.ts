@@ -17,7 +17,13 @@ export type Tileset = {
 
 export type Tile = {
   readonly id:          number;
-  readonly objectgroup: Objectgroup;
+  readonly objectgroup?: Objectgroup;
+  readonly animation?:  Animation;
+}
+
+export type Animation = {
+  readonly tileid:         number;
+  readonly duration:   number;
 }
 
 export type Objectgroup = {

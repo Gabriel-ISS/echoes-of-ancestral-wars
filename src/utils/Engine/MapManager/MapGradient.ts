@@ -9,6 +9,7 @@ enum Direction {
   RIGHT_LEFT = "right-left",
 }
 
+/** @deprecated ya no se usa*/
 export default class MapGradient extends Element<"canvas"> {
   private ctx: CanvasRenderingContext2D; // Contexto del canvas
 

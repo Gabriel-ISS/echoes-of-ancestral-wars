@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+ <tileset firstgid="1" source="objects.json"/>
+ <object name="Skeleton spawn" type="Spawn" gid="9" width="16" height="16">
+  <properties>
+   <property name="entity" value="Skeleton"/>
+   <property name="level" type="int" value="1"/>
+   <property name="quantity" type="int" value="3"/>
+  </properties>
+ </object>
+</template>

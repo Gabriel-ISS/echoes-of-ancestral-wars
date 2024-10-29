@@ -4,15 +4,8 @@ import MapGradient from "../utils/Engine/MapManager/MapGradient";
 import MapManager from "../utils/Engine/MapManager/MapManager";
 import prepareCharacter from '../utils/game/characters/playable-characters/prepareCharacter';
 
-  const map = await MapDataLoader.getMap("map");
+  const map = await MapDataLoader.getMap('/maps/open-world/map.json');
   const mapManager = new MapManager("map-container", map);
-
-  new MapGradient(mapManager._element, mapManager.dimensions, 64, [
-    [0, "rgba(0, 0, 0, 1)"],
-    [0.6, "rgba(0, 0, 0, 0.6)"],
-    [0.8, "rgba(0, 0, 0, 0.3)"],
-    [1, "rgba(0, 0, 0, 0)"],
-  ]);
 
   await prepareCharacter(mapManager);
 

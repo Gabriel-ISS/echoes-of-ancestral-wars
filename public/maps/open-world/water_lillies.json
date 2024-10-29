@@ -1,0 +1,14 @@
+{ "columns":6,
+ "image":"..\/..\/assets\/mystic_woods_2.2\/sprites\/tilesets\/water_lillies.png",
+ "imageheight":16,
+ "imagewidth":96,
+ "margin":0,
+ "name":"water_lillies",
+ "spacing":0,
+ "tilecount":6,
+ "tiledversion":"1.11.0",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}
