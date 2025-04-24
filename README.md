@@ -2,6 +2,16 @@
 
 A challenge to test my vanilla JavaScript skills
 
+## Project features
+
+- Map rendering
+- Sprite animations
+- Keyboard controls
+- Sound effects
+- Game loop
+- FPS counter
+- UI controls
+
 ## Commands
 
 All commands are run from the root of the project, from a terminal:
