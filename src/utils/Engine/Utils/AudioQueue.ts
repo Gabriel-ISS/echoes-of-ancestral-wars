@@ -1,4 +1,5 @@
 export default class AudioQueue {
+  static defaultVolume = 0.5;
   private audio: HTMLAudioElement;
   private queue: string[];
   private currentIndex: number;
@@ -25,6 +26,7 @@ export default class AudioQueue {
     if (!this.isPlaying) {
       this.isPlaying = true;
       this.audio.play();
+      this.audio.volume = AudioQueue.defaultVolume;
     }
   }
 

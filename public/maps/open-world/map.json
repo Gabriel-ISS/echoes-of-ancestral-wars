@@ -643,6 +643,24 @@
                  "width":16,
                  "x":400.75,
                  "y":591.625
+                }, 
+                {
+                 "gid":539,
+                 "height":16,
+                 "id":38,
+                 "name":"Cofre dorado",
+                 "properties":[
+                        {
+                         "name":"content",
+                         "type":"string",
+                         "value":"coin:50"
+                        }],
+                 "rotation":0,
+                 "type":"Chest",
+                 "visible":true,
+                 "width":16,
+                 "x":512.545454545455,
+                 "y":301.454545454545
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -651,7 +669,7 @@
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":38,
+ "nextobjectid":45,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
@@ -708,6 +726,10 @@
         {
          "firstgid":533,
          "source":"water_lillies.json"
+        }, 
+        {
+         "firstgid":539,
+         "source":"chest_02.json"
         }],
  "tilewidth":16,
  "type":"map",

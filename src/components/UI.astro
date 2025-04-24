@@ -13,6 +13,11 @@ import { setUIControls } from '../utils/game/controls/ui.controller';
 <>
   <button id="start-stop-game-btn">Iniciar</button>
   <div id="fps" class="ui">FPS: 0</div>
+  <ul id="controls-description">
+    <li>[Space] Para iniciar o pausar el juego</li>
+    <li>[W, A, S, D] Para mover el personaje</li>
+    <li>[Esc] Para salir de la pantalla completa</li>
+  </ul>
 </>
 
 <style scoped>
@@ -51,5 +56,19 @@ import { setUIControls } from '../utils/game/controls/ui.controller';
 
   #start-stop-game-btn:active {
     transform: scale(0.95);
+  }
+
+  #controls-description {
+    position: fixed;
+    z-index: 100;
+
+    top: 60px;
+    left: 30px;
+
+    list-style: none;
+    padding: 0;
+
+    font-family: "Pixelify", sans-serif;
+    font-size: 1.5rem;
   }
 </style>
