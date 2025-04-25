@@ -26,8 +26,7 @@ class MapDataLoader {
       }
     })
 
-    // se espera que validoPath empiece con /
-    return BASE_PATH + validPath.slice(1) + '/' + path.join("/");
+    return validPath + '/' + path.join("/");
   }
 
   /**
@@ -36,6 +35,7 @@ class MapDataLoader {
    * @returns 
    */
   async getMap(mapPath: string) {
+    mapPath = BASE_PATH + mapPath.slice(1);
     const mapData = await this.getMapData(mapPath);
     const tilesets: [Tileset, LoadedTileset][] = await Promise.all(
       mapData.tilesets.map(async (tileset) => {
