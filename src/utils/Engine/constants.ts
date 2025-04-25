@@ -12,5 +12,5 @@ export const Config = {
   SHOW_COLLISION_ZONES: false,
 };
 
-export const BASE_PATH = import.meta.env.BASE_URL.replace(/\/$/, '') + '/';
+export const BASE_PATH = import.meta.env.BASE_URL;
 console.log('BASE_PATH', BASE_PATH);
