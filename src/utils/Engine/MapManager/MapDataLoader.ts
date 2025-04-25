@@ -36,7 +36,6 @@ class MapDataLoader {
    * @returns 
    */
   async getMap(mapPath: string) {
-    mapPath = BASE_PATH + mapPath.slice(1);
     const mapData = await this.getMapData(mapPath);
     const tilesets: [Tileset, LoadedTileset][] = await Promise.all(
       mapData.tilesets.map(async (tileset) => {
