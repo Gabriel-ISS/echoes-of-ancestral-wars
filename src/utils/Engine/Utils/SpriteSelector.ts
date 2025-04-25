@@ -16,8 +16,9 @@ export default class SpriteSelector {
     readonly spriteSize: number,
     readonly spriteDimensions: Dimensions
   ) {
+    this.spriteSheetPath = BASE_PATH + spriteSheetPath.slice(1);
     this.spriteSheet = new Image();
-    this.spriteSheet.src = BASE_PATH + spriteSheetPath.slice(1);
+    this.spriteSheet.src = spriteSheetPath;
     this.spriteCoordinates = {};
     this.paddingBetween =
       (spriteDimensions.width - spriteSize * columns) / columns;
