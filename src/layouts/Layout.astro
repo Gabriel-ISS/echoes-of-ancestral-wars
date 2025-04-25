@@ -22,6 +22,7 @@ const { title } = Astro.props;
 </html>
 <style is:global>
   :root {
+    --base-url: url(import.meta.env.BASE_URL);
     --accent: 136, 58, 234;
     --accent-light: 224, 204, 250;
     --accent-dark: 49, 10, 101;
@@ -35,14 +36,14 @@ const { title } = Astro.props;
 
   @font-face {
     font-family: "Pixelify";
-    src: url("/fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf")
+    src: url(var(--base-url) + "/fonts/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf")
       format("truetype");
   }
 
   @font-face {
     font-family: "Tiny5";
     /** TODO: No funciona */
-    src: url("/fonts/Tiny5/Tiny5-Regular.ttf") format("truetype")
+    src: url(var(--base-url) + "/fonts/Tiny5/Tiny5-Regular.ttf") format("truetype")
       format("truetype");
   }
 
