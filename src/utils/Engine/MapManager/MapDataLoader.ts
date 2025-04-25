@@ -1,11 +1,12 @@
 import type { MapData, Tileset } from "../../../types/tiled/Map";
 import type { Tileset as LoadedTileset } from "../../../types/tiled/Tileset";
+import { BASE_PATH } from '../constants';
 import { loadImage } from '../utils';
 import Map from "./Map";
 
 class MapDataLoader {
 
-  /**
+/**
    * 
    * @param origin el path de origen
    * @param relativePath la ruta relativa a la ruta de origen
@@ -25,12 +26,17 @@ class MapDataLoader {
       }
     })
 
-    console.log(validPath, path.join("/"));
-
-    return validPath + '/' + path.join("/");
+    // se espera que validoPath empiece con /
+    return BASE_PATH + validPath.slice(1) + '/' + path.join("/");
   }
 
+  /**
+   * 
+   * @param mapPath debe empezar con /
+   * @returns 
+   */
   async getMap(mapPath: string) {
+    mapPath = BASE_PATH + mapPath.slice(1);
     const mapData = await this.getMapData(mapPath);
     const tilesets: [Tileset, LoadedTileset][] = await Promise.all(
       mapData.tilesets.map(async (tileset) => {

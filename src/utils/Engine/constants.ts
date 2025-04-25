@@ -11,3 +11,5 @@ export const Config = {
   SHOW_COLLISIONS: false,
   SHOW_COLLISION_ZONES: false,
 };
+
+export const BASE_PATH = import.meta.env.BASE_URL || '/';

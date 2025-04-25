@@ -22,7 +22,7 @@ export default class AudioQueue {
     return queue;
   }
 
-  public start(): void {
+  public play(): void {
     if (!this.isPlaying) {
       this.isPlaying = true;
       this.audio.play();
@@ -30,11 +30,10 @@ export default class AudioQueue {
     }
   }
 
-  public stop(): void {
+  public pause(): void {
     if (this.isPlaying) {
       this.isPlaying = false;
       this.audio.pause();
-      this.audio.currentTime = 0; // Reinicia el audio
     }
   }
 

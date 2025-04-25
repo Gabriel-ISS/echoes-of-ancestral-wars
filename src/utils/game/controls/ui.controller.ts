@@ -29,11 +29,13 @@ export async function setUIControls(
   const startGame = () => {
     if (FPSController.gameIsRunning) return;
 
+    document.body.style.cursor = 'none';
+
     document.documentElement.requestFullscreen();
 
     FPSController.startGame();
 
-    backgroundAudio.start();
+    backgroundAudio.play();
 
     $startStopGameBtn.innerHTML = "Pausar";
     $startStopGameBtn.appendChild(pauseIcon);
@@ -48,9 +50,11 @@ export async function setUIControls(
     if (!FPSController.gameIsRunning) return;
     FPSController.stopGame();
 
+    document.body.style.cursor = 'auto';
+
     //document.exitFullscreen();
 
-    backgroundAudio.stop();
+    backgroundAudio.pause();
 
     $fps.innerText = "FPS: 0";
 

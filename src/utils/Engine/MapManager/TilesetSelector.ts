@@ -32,10 +32,6 @@ export default class TilesetSelector {
     if (this.tileset.tilecount == 1) return new Point([0, 0]);
     const localID = this.getLocalID(globalID);
     const coordinates = this.getTileCoordinatesFromLocalID(localID);
-    if (this.tileset.tilecount == 6) {
-      console.log(this.tilesetGlobalID)
-      console.log(globalID, localID, coordinates)
-    }
     return coordinates
   }
 
