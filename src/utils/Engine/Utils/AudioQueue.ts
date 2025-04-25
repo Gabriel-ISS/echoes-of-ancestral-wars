@@ -1,3 +1,5 @@
+import { BASE_PATH } from '../constants';
+
 export default class AudioQueue {
   static defaultVolume = 0.5;
   private audio: HTMLAudioElement;
@@ -6,6 +8,7 @@ export default class AudioQueue {
   private isPlaying: boolean;
 
   constructor(basePath: string, queueLength: number) {
+    basePath = BASE_PATH + basePath.slice(1)
     this.queue = this.generateQueue(basePath, queueLength);
     this.currentIndex = 0;
     this.isPlaying = false;

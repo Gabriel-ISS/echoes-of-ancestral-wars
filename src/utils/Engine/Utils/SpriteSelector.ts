@@ -1,3 +1,4 @@
+import { BASE_PATH } from '../constants';
 import { loadImage } from "../utils";
 import type Dimensions from "./Dimensions";
 import Point from "./Point";
@@ -16,7 +17,7 @@ export default class SpriteSelector {
     readonly spriteDimensions: Dimensions
   ) {
     this.spriteSheet = new Image();
-    this.spriteSheet.src = spriteSheetPath;
+    this.spriteSheet.src = BASE_PATH + spriteSheetPath.slice(1);
     this.spriteCoordinates = {};
     this.paddingBetween =
       (spriteDimensions.width - spriteSize * columns) / columns;
