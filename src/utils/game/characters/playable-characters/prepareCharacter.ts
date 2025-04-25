@@ -4,7 +4,6 @@ import { range } from "../../../Engine/utils";
 import Dimensions from "../../../Engine/Utils/Dimensions";
 import Point from "../../../Engine/Utils/Point";
 import SpriteSelector from "../../../Engine/Utils/SpriteSelector";
-import SpriteSheetAnimation from "../../../Engine/Utils/SpriteSheetAnimation";
 import setCharacterControls from "../../controls/character.controller";
 
 export default async function prepareCharacter(mapManager: MapManager) {

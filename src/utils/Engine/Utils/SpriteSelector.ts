@@ -18,13 +18,13 @@ export default class SpriteSelector {
   ) {
     this.spriteSheetPath = BASE_PATH + spriteSheetPath.slice(1);
     this.spriteSheet = new Image();
-    this.spriteSheet.src = spriteSheetPath;
+    this.spriteSheet.src = this.spriteSheetPath;
     this.spriteCoordinates = {};
     this.paddingBetween =
       (spriteDimensions.width - spriteSize * columns) / columns;
   }
 
-  /**Carga la imagen del spritesheet, y cachea las coordenadas de cada sprite */
+  /**Carga la imagen del sprite sheet, y cachea las coordenadas de cada sprite */
   async loadSpriteSheet() {
     await loadImage(this.spriteSheetPath);
     for (let row = 0; row <= this.rows; row++) {
