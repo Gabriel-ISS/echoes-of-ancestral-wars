@@ -12,5 +12,6 @@ export const Config = {
   SHOW_COLLISION_ZONES: false,
 };
 
-export const BASE_PATH = import.meta.env.BASE_URL;
+// todo esto porque en la build temporalmente es indefinido y se rompe
+export const BASE_PATH = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') + '/';
 console.log('BASE_PATH', BASE_PATH);
